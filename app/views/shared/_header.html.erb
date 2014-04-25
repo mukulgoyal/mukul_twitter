@@ -1,0 +1,12 @@
+<div class='well'>
+  <div class="pull-right">
+    <%if user_signed_in?%>
+      <%= link_to "Home",  root_url, class: "btn btn-small btn-info" %>
+      <%= link_to "Profiles",  users_path, class: "btn btn-small btn-info" %>
+      <%= link_to current_user, "/#{current_user.user_name}", class: "btn btn-small btn-info" %>
+      <%= link_to "Log Out",  destroy_user_session_path, method: "DELETE", class: "btn btn-small btn-info" %>
+    <% else %>
+      <%= link_to "Sign In",  new_user_session_path, class: "btn btn-small btn-info" %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="well span6 offset5">
+  <center><h2>All Users</h2></center>
+</div>
+<% (@users - [current_user]).each do|user|%>
+  <div class="well span6 offset5">
+    <b><%= link_to user, "/#{user.user_name}" %></b>
+    <% unless user.followers.include? current_user %>
+      <%= link_to "Follow", add_follower_user_path(current_user, user_id: user.id), method: "POST", class: "btn btn-small btn-info pull-right" %>
+    <% else %>
+      <%= link_to "Unfollow", remove_follower_user_path(current_user, user_id: user.id), method: "DELETE", class: "btn btn-small btn-danger pull-right" %>
+    <% end %>
+  </div>
+<% end %>

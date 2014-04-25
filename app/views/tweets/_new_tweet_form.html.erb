@@ -1,0 +1,7 @@
+<div class="well span6 offset5">
+  <%= form_for Tweet.new do|f|%>
+    <%= f.text_area :tweet, autofocus: true, placeholder: "Compose new Tweet...(Maximum 160 characters)", style: "width: 450px;", maxlength: "160" %>
+    <%= f.check_box :private%>&nbsp;&nbsp;Private
+    <%= f.submit "Tweet", class: "btn btn-small btn-info pull-right" %>
+  <% end %>
+</div>
