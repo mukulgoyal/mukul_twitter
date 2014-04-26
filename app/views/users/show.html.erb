@@ -3,12 +3,13 @@
 </div>
 <% @user.tweets.each do|tweet|%>
   <div class="well span6 offset5">
+    <p class="label pull-right label-info"><%= tweet.private? ? "Private" : "Public"%></p>
     <h3><%= current_user == tweet.user ? "Owned Post" : "Posted by: #{tweet.user}"%></h3>
     <hr>
     <%=tweet.tweet%>
     <hr>
     <% if current_user != tweet.user  and !current_user.tweets.map(&:parent_id).include?(tweet.id)%>
-      <% if !tweet.private or tweet.user.followers.include?(current_user)%>
+      <% if retweet_able?(current_user)%>
         <%= link_to "Retweet", retweet_tweet_path(tweet), method: "POST", class: "btn btn-small btn-info pull-right" %>
       <% end %>
     <% elsif current_user != tweet.user %>

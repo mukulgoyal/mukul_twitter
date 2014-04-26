@@ -20,10 +20,6 @@ class User < ActiveRecord::Base
     user_name.titleize
   end
   
-  def to_param
-    user_name
-  end
-  
   def add_follower follower_id
     follower = User.find_by_id follower_id
     followers << follower
