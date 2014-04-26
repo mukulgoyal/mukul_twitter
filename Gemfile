@@ -29,6 +29,10 @@ gem 'devise'
 
 gem 'bootstrap-sass', '~> 2.0.3'
 
+gem 'rspec-rails'
+gem 'factory_girl_rails'
+gem 'ffaker'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
