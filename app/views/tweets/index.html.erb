@@ -2,22 +2,5 @@
   <center><h2>Tweets</h2></center>
 </div>
 <%= render :partial => "new_tweet_form"%>
-<% @tweets.each do|tweet|%>
-  <div class="well span6 offset5">
-    <p class="label pull-right label-info"><%= tweet.private? ? "Private" : "Public"%></p>
-    <h3><%= current_user == tweet.user ? "Owned Post" : "Posted by: #{tweet.user}"%></h3>
-    <hr>
-    <%=tweet.tweet%>
-    <hr>
-    <% if current_user != tweet.user  and !current_user.tweets.map(&:parent_id).include?(tweet.id)%>
-      <% if tweet.retweet_able?(current_user)%>
-        <%= link_to "Retweet", retweet_tweet_path(tweet), method: "POST", class: "btn btn-small btn-info pull-right" %>
-      <% end %>
-    <% elsif current_user != tweet.user %>
-      <div class="pull-right label label-success">Retweeted</div>
-    <% end %>
-    <% if tweet.user == current_user %>
-      <%= link_to "Delete", tweet, method: "DELETE", class: "btn btn-small btn-danger pull-right" %>
-    <% end %>
-  </div>
-<% end %>
+
+<%= render :partial => "tweet", collection: @tweets%>
